@@ -4,14 +4,17 @@ Sequence diagram on creating a new note on the page https://studies.cs.helsinki.
 sequenceDiagram
 participant browser
 participant server
-browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note HTML Forms Data / request object
+
+browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note HTML Payload: Form data
 loop ServerSide 
-    server->>server: Access the received data and process it
+    server->>server: Server gets access to the data via request objects body field. Then server processes it with python or similar back-end language.
 end
 server-->>browser: Status Code 302, URL redirect
 
 browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+activate server
 server-->>browser: HTML document
+deactivate server
 
 browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
 server-->>browser: the css file
