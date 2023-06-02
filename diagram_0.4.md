@@ -1,3 +1,5 @@
+Sequence diagram on creating a new note on the page https://studies.cs.helsinki.fi/exampleapp/notes
+```mermaid
 sequenceDiagram
     participant browser
     participant server
@@ -22,3 +24,4 @@ sequenceDiagram
     server->>browser: [{content: "Hello", date: "2023-06-01T04:36:50828Z"},…]
 
     Note right of browser: The browser executes the callback function that renders the notes
+```
