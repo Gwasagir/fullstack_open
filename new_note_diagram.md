@@ -12,6 +12,9 @@ end
 activate server
 server-->>browser: Status Code 302, URL redirect
 deactivate server
+loop BrowserSide
+    browser->browser: Browser gets redirected and <br> reloads the /notes page.
+end
 
 browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
 activate server
