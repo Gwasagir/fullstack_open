@@ -1,4 +1,28 @@
 
+const Header = (props) => {
+  return(
+    <h1>
+      {props.course}
+    </h1>
+  )
+} 
+
+const Content = (props) => {
+  return(
+    <p>
+      {props.part} {props.exercises}
+    </p>
+  )
+}
+
+const Total = (props) => {
+  const sum_exercises = props.exercises.reduce(function(a,b){return a+b})
+  return(
+    <p>
+      Number of exercises {sum_exercises}
+    </p>
+  )
+}
 
 const App = () => {
   const course = 'Half Stack application development'
@@ -11,17 +35,11 @@ const App = () => {
 
   return (
     <div>
-      <h1>{course}</h1>
-      <p>
-        {part1} {exercises1}
-      </p>
-      <p>
-        {part2} {exercises2}
-      </p>
-      <p>
-        {part3} {exercises3}
-      </p>
-      <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
+      <Header course={course} />
+      <Content part={part1} exercises={exercises1} />
+      <Content part={part2} exercises={exercises2} />
+      <Content part={part3} exercises={exercises3} />
+      <Total exercises={[exercises1, exercises2, exercises3]} />
     </div>
   )
 }
