@@ -1,6 +1,9 @@
-# fullstack_part0
-Niko Keurulainen submissions for Fullstack Open
+# Fullstack Open
+## Niko Keurulainen submissions 
 
+The React exercises are done using [Vitejs](https://vitejs.dev/guide/)
+
+### Repository tree
 <pre>
 part0
     0_4_new_note_diagram.md
