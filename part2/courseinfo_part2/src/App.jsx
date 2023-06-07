@@ -20,15 +20,16 @@ const Content = (props) => {
   )}
 
 const Total = (props) => {
-  let sum_exercises = 0
-  props.parts.map(part => sum_exercises+=part.exercises) 
+  let calcTotal = props.parts.reduce((sum, order) => {
+    return sum + order.exercises
+  }, 0)
   return(
     <b>
-      total of {sum_exercises} exercises
+      total of {calcTotal} exercises
     </b>
-  )
-}
-
+    )
+  }
+    
 const App = () => {
   const course = {
     id: 1,
