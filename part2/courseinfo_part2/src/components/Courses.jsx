@@ -6,7 +6,7 @@ const Part = (props) => {
     )}
   
 const Content = (props) => {
-    return(props.parts.map(part => <Part key={part.id} part={part}/>)
+    return(props.parts.map(part => <Part key={part.name} part={part}/>)
     )}
   
 const Total = (props) => {
@@ -30,5 +30,6 @@ const Courses = (props) => {
       </> 
       ))
   }
+
 
 export default Courses
