@@ -6,7 +6,7 @@ const Part = (props) => {
     )}
   
 const Content = (props) => {
-    return(props.parts.map(part => <Part key={"part"+part.id} part={part}/>)
+    return(props.parts.map(part => <Part key={part.id} part={part}/>)
     )}
   
 const Total = (props) => {
@@ -23,10 +23,10 @@ const Header = ({name}) => <h2>{name}</h2>
 
 const Courses = (props) => {
     return(props.courses.map(courses =>
-    <div>
-      <Header key={courses.id} course={courses.name} />
-      <Content key={"cont"+courses.id} parts={courses.parts} />
-      <Total key={"tot"+courses.id} parts={courses.parts} />
+    <div key={courses.id}>
+      <Header course={courses.name} />
+      <Content parts={courses.parts} />
+      <Total key={courses.id} parts={courses.parts} />
     </div>
       ))
   }
