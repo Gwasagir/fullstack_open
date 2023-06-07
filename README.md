@@ -15,6 +15,7 @@ part1
   unicafe
   anecdotes
 part2
+  courseinfo (2.1-2.5)
   phonebook
   countries
 </pre>
