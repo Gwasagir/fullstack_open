@@ -4,10 +4,21 @@ import { useState } from 'react'
 const Button = ({ handleClick, text }) => (<button onClick={handleClick}>{text}</button>)
 
 const Statistics = ({good, neutral, bad}) => {
+  const all = good+neutral+bad
+  const average = all/3
+  const positive = 100*good/all
+  if (all === 0) {
+    return(
+      <div>No feedbabck given</div>
+    )
+  }
   return(
     <><div>good {good} </div>
     <div>neutral {neutral}</div>
     <div>bad {bad}</div>
+    <div>all {all}</div>
+    <div>average {average}</div>
+    <div>positive {positive} %</div>
     </>
   )
 }
