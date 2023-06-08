@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import GetNumbers from './components/GetNumbers'
-import CheckEquality from './components/DeepEquals'
 import AddPerson from './components/AddPerson'
 import Filter from './components/Filter'
 
@@ -19,50 +18,16 @@ const App = () => {
   const handleAddName = (event) => setNewName(event.target.value)
   const handleAddNum = (event) => setNewNumber(event.target.value)
   const handleFilter = (event) => setFilterValue(event.target.value)
- 
-  const raiseError = () => alert(`${newName} is already added to phonebook`)
-
-  const addPerson = (event) => {
-    event.preventDefault()
-    let unique = true
-    const PersonObject = {
-      name: newName,
-      number: newNumber
-    }
-    // Checking if newName exists
-    persons.map(person => {
-      if (CheckEquality(PersonObject.name, person.name)){
-        raiseError(`${PersonObject.name} is already added to phonebook`)
-        setNewName('')
-        setNewNumber('')
-        unique = false
-      }}
-    )
-    // Shouldn't come here if raiseError occured before
-    if (unique) {
-    setPersons(persons.concat(PersonObject))
-    setNewName('')
-    setNewNumber('')
-    }
-  }
-
-  const addNewPerson = (event) => {
-    event.preventDefault()
-    return(AddPerson(this.newName, this.newNumber, this.persons))
-  }
 
   return (
     <div>
-      <h1>Phonebook</h1>
+      <h2>Phonebook</h2>
       <Filter filterValue={filterValue} handler={handleFilter} />
-      <h2>add a new</h2>
-      <form onSubmit={addPerson}>
-        <div> name: <input value={newName} onChange={handleAddName}/></div>
-        <div> number: <input value={newNumber} onChange={handleAddNum} /> </div>
-        <div> <button type="submit">add</button> </div>
-      </form>
-
-      <h2>Numbers</h2>
+      <h3>add a new</h3>
+        <AddPerson persons={persons} setPersons={setPersons} newName={newName} 
+        newNumber={newNumber} handleName={handleAddName} handleNum={handleAddNum}
+        setNewName={setNewName} setNewNumber={setNewNumber} />
+      <h3>Numbers</h3>
         <GetNumbers persons={persons} filter={filterValue} />
     </div>
   )

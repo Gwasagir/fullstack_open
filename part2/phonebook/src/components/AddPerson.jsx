@@ -1,21 +1,40 @@
-const AddPerson = (newName, newNumber) => {
-    let unique = true
-    const PersonObject = {
-      name: newName
-    }
-    // Checking if newName exists
-    persons.map(person => {
-      if (CheckEquality(newName, person.name)){
-        raiseError()
-        setNewName('')
-        unique = false
-      }}
-    )
-    // Shouldn't come here if raiseError occured before
-    if (unique) {
-    setPersons(persons.concat(PersonObject))
-    setNewName('')
-    }
-  }
+import CheckEquality from "./DeepEquals"
+
+const AddPerson = (props) => {
+    const raiseError = () => alert(`${props.newName} is already added to phonebook`)
+
+    const addButton = (event) => {
+        event.preventDefault()
+        let unique = true
+        const PersonObject = {
+            name: props.newName,
+            number: props.newNumber
+        }
+        // Checking if newName exists
+        props.persons.map(person => {
+            if (CheckEquality(PersonObject.name, person.name)){
+            raiseError(`${PersonObject.name} is already added to phonebook`)
+            props.setNewName('')
+            props.setNewNumber('')
+            unique = false
+            }}
+        )
+        // Shouldn't come here if raiseError occured before
+        if (unique) {
+            props.setPersons(props.persons.concat(PersonObject))
+            props.setNewName('')
+            props.setNewNumber('')
+        }
+        }
+    
+    return(
+    <div>
+        <form onSubmit={addButton}>
+            <div> name: <input value={props.newName} onChange={props.handleName}/></div>
+            <div> number: <input value={props.newNumber} onChange={props.handleNum} /> </div>
+            <div> <button type="submit">add</button> </div>
+        </form>
+    </div>
+    )}
 
 export default AddPerson
