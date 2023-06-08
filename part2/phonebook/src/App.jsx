@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import GetNumbers from './components/getNumbers'
+import GetNumbers from './components/GetNumbers'
+import CheckEquality from './components/DeepEquals'
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -9,16 +10,28 @@ const App = () => {
 
   const addPerson = (event) => {
     event.preventDefault()
+    let unique = true
     const PersonObject = {
       name: newName
     }
+    // Checking if newName exists
+    persons.map(person => {
+      if (CheckEquality(newName, person.name)){
+        raiseError()
+        setNewName('')
+        unique = false
+      }}
+    )
+    // Shouldn't come here if raiseError occured before
+    if (unique) {
     setPersons(persons.concat(PersonObject))
     setNewName('')
+    }
   }
 
-  const handleAddName = (event) => {
-    setNewName(event.target.value)
-  }
+  const raiseError = () => alert(`${newName} is already added to phonebook`)
+
+  const handleAddName = (event) => setNewName(event.target.value)
 
   return (
     <div>
