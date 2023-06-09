@@ -6,6 +6,7 @@ import dbService from "../services/phonebook"
 // props.handlers. handleName, handleNum
 
 const AddPerson = (props) => {
+    // raiserError is legacy code and should probly be deleted
     const raiseError = () => alert(`${props.newName} is already added to phonebook`)
 
     const addButton = (event) => {
@@ -17,14 +18,17 @@ const AddPerson = (props) => {
         }
         // Checking if newName exists
         props.persons.map(person => {
-            if (CheckEquality(PersonObject.name, person.name)){
-            raiseError(`${PersonObject.name} is already added to phonebook`)
-            props.setNewName('')
-            props.setNewNumber('')
-            unique = false
-            }}
+            if (CheckEquality(PersonObject.name, person.name)){ 
+                // if exists, prompt to update number
+                if (window.confirm(`${PersonObject.name} is already added to phonebook, replace the old number with a new one?`)){
+                    dbService
+                        .updateNum(props.setPersons, props.persons, person.id, PersonObject.number)
+                    unique = false
+                    }
+            }
+        }
         )
-        // Shouldn't come here if raiseError occured before
+        // Come here only if NEW number being added
         if (unique) {dbService
             .newPerson(PersonObject)
             .then(returnedPerson => {

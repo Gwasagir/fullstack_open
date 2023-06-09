@@ -25,17 +25,6 @@ const GetNumbers = (props) => {
                     props.handleDelete(entry.id, entry.name);}
                     }>delete</button>
             </div>)
-        // <div>
-        //     {props.persons.filter(entry => entry.id !== props.DeletedId).map(filteredName => (
-        //         <div key={filteredName.id}>
-        //             {filteredName.name} {filteredName.number}
-        //                 <button onClick={() => {
-        //                 props.setDeletedId(filteredName.id);
-        //                 props.handleDelete(filteredName.id, filteredName.name);}
-        //                 }>delete</button>
-        //         </div>
-        //     ))}
-        // </div>
     )
 }
 

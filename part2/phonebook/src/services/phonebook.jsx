@@ -12,13 +12,22 @@ const newPerson = newObject => {
 }
 
 const removePerson = id => {
-    const request = axios.delete('http://localhost:3001/persons/'+id)
+    const request = axios.delete(baseUrl+'/'+id)
     return request.then(response => response)
 }
 
-const updateNum = () => {}
+const updateNum = (setPersons, persons, id, newNum) => {
+    const personURL = baseUrl+'/'+id
+    const personObject = persons.find(person => person.id === id) 
+    console.log(personObject);
+    const updatedNumber = {...personObject, number: newNum} // object with same name + id but new number
+    console.log(updatedNumber)
+    axios.put(personURL, updatedNumber).then(response => {
+        setPersons(persons.map(person => person.id !== id ? person : response.data))
+    })
+    }
 
-const updatePersons = (setPersons) => {  
+const updatePersons = setPersons => {  
     const request = axios.get(baseUrl);
     request.then(response => {
       const persons = response.data;
