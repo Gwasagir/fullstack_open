@@ -3,7 +3,7 @@ import GetNumbers from './components/GetNumbers'
 import AddPerson from './components/AddPerson'
 import Filter from './components/Filter'
 import axios from 'axios'
-
+import dbService from './services/phonebook'
 
 const App = () => {
   // Hooks
@@ -17,13 +17,11 @@ const App = () => {
   const handleAddNum = (event) => setNewNumber(event.target.value)
   const handleFilter = (event) => setFilterValue(event.target.value)
 
-  // Effect Hook for fetching data
+  // Effect Hook for fetching data when loading page
   const hook = () => {
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        setPersons(response.data)
-      })
+    dbService
+      .getAll()
+      .then(PersonsFromDb => {setPersons(PersonsFromDb)})
   }
   useEffect(hook, [])
 

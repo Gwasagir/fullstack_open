@@ -1,4 +1,9 @@
 import CheckEquality from "./DeepEquals"
+import dbService from "../services/phonebook"
+
+// props.constants. persons, newName, newNumber
+// props.setState. setPersons, setNewName, setNewNumber 
+// props.handlers. handleName, handleNum
 
 const AddPerson = (props) => {
     const raiseError = () => alert(`${props.newName} is already added to phonebook`)
@@ -25,6 +30,12 @@ const AddPerson = (props) => {
             props.setNewName('')
             props.setNewNumber('')
         }
+        if (unique) {dbService
+            .newPerson(PersonObject)
+            .then(returnedPersons => {
+                props.setNewName('')
+                props.setNewNumber('')
+            })}
         }
     
     return(
