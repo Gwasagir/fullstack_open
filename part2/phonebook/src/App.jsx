@@ -3,6 +3,7 @@ import GetNumbers from './components/GetNumbers'
 import AddPerson from './components/AddPerson'
 import Filter from './components/Filter'
 import dbService from './services/phonebook'
+import DeleteNumber from "./components/DeleteNumber"
 
 const App = () => {
   // Hooks
@@ -10,11 +11,13 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filterValue, setFilterValue] = useState('')
+  const [deletedId, setDeletedId] = useState('')
   
   // Event handlers
   const handleAddName = (event) => setNewName(event.target.value)
   const handleAddNum = (event) => setNewNumber(event.target.value)
   const handleFilter = (event) => setFilterValue(event.target.value)
+  const handleDelete = (id, name) => DeleteNumber(id, name, setPersons)
 
   // Effect Hook for fetching data when loading page
   useEffect((() => {
@@ -32,7 +35,8 @@ const App = () => {
         newNumber={newNumber} handleName={handleAddName} handleNum={handleAddNum}
         setNewName={setNewName} setNewNumber={setNewNumber} />
       <h3>Numbers</h3>
-        <GetNumbers persons={persons} filter={filterValue} />
+        <GetNumbers persons={persons} filter={filterValue} 
+        deletedId={deletedId} setDeletedId={setDeletedId} handleDelete={handleDelete} />
     </div>
   )
 }
