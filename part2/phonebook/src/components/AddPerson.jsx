@@ -25,14 +25,10 @@ const AddPerson = (props) => {
             }}
         )
         // Shouldn't come here if raiseError occured before
-        if (unique) {
-            props.setPersons(props.persons.concat(PersonObject))
-            props.setNewName('')
-            props.setNewNumber('')
-        }
         if (unique) {dbService
             .newPerson(PersonObject)
-            .then(returnedPersons => {
+            .then(returnedPerson => {
+                props.setPersons(props.persons.concat(returnedPerson))
                 props.setNewName('')
                 props.setNewNumber('')
             })}

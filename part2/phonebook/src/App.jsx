@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import GetNumbers from './components/GetNumbers'
 import AddPerson from './components/AddPerson'
 import Filter from './components/Filter'
-import axios from 'axios'
 import dbService from './services/phonebook'
 
 const App = () => {
@@ -18,12 +17,11 @@ const App = () => {
   const handleFilter = (event) => setFilterValue(event.target.value)
 
   // Effect Hook for fetching data when loading page
-  const hook = () => {
+  useEffect((() => {
     dbService
       .getAll()
       .then(PersonsFromDb => {setPersons(PersonsFromDb)})
-  }
-  useEffect(hook, [])
+  }), [])
 
   return (
     <div>
