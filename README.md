@@ -18,4 +18,10 @@ part2
   courseinfo (2.1-2.5)
   phonebook
   countries
+part3
+  phonebook
+part4
+  bloglist
+part5
+  bloglist
 </pre>

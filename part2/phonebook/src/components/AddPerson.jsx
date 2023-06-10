@@ -19,7 +19,7 @@ const AddPerson = (props) => {
         // Checking if newName exists
         props.persons.map(person => {
             if (CheckEquality(PersonObject.name, person.name)){ 
-                // if exists, prompt to update number, check for errors
+                // if exists, prompt to update the number and check for errors
                 if (window.confirm(`${PersonObject.name} is already added to phonebook, replace the old number with a new one?`))
                     {dbService
                         .updateNum(props.setPersons, props.persons, person.id, PersonObject.number)
@@ -39,7 +39,7 @@ const AddPerson = (props) => {
             }
         }
         )
-        // Come here only if NEW number being added
+        // Come here only if NEW name and number being added
         if (unique) {dbService
             .newPerson(PersonObject)
             .then(returnedPerson => {
@@ -50,7 +50,7 @@ const AddPerson = (props) => {
                 setTimeout(() => {props.setAddMessage(null)}, 4000)
             })}
         }
-    
+    // Return handles the submit form with name, number and add button
     return(
     <div>
         <form onSubmit={addButton}>
