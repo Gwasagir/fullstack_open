@@ -29,7 +29,10 @@ const AddPerson = (props) => {
                         })
                         .catch(error => {
                             props.setErrorMessage('Information of '+PersonObject.name+' has already been removed from server')
-                            setTimeout(() => {props.setErrorMessage(null)}, 4000)
+                            setTimeout(() => {
+                                props.setErrorMessage(null)
+                                dbService.updatePersons(props.setPersons)
+                            }, 4000)
                             })
                     unique = false
                     }
