@@ -2,7 +2,7 @@ import CheckEquality from "./DeepEquals"
 import dbService from "../services/phonebook"
 
 // props.constants. persons, newName, newNumber
-// props.setState. setPersons, setNewName, setNewNumber 
+// props.setState. setPersons, setNewName, setNewNumber, setAddMessage
 // props.handlers. handleName, handleNum
 
 const AddPerson = (props) => {
@@ -35,6 +35,8 @@ const AddPerson = (props) => {
                 props.setPersons(props.persons.concat(returnedPerson))
                 props.setNewName('')
                 props.setNewNumber('')
+                props.setAddMessage('Added '+returnedPerson.name)
+                setTimeout(() => {props.setAddMessage(null)}, 4000)
             })}
         }
     
