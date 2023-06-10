@@ -2,7 +2,7 @@ import CheckEquality from "./DeepEquals"
 import dbService from "../services/phonebook"
 
 // props.constants. persons, newName, newNumber
-// props.setState. setPersons, setNewName, setNewNumber, setAddMessage
+// props.setState. setPersons, setNewName, setNewNumber, setAddMessage, setErrorMessage
 // props.handlers. handleName, handleNum
 
 const AddPerson = (props) => {
@@ -19,10 +19,18 @@ const AddPerson = (props) => {
         // Checking if newName exists
         props.persons.map(person => {
             if (CheckEquality(PersonObject.name, person.name)){ 
-                // if exists, prompt to update number
-                if (window.confirm(`${PersonObject.name} is already added to phonebook, replace the old number with a new one?`)){
-                    dbService
+                // if exists, prompt to update number, check for errors
+                if (window.confirm(`${PersonObject.name} is already added to phonebook, replace the old number with a new one?`))
+                    {dbService
                         .updateNum(props.setPersons, props.persons, person.id, PersonObject.number)
+                        .then(response => {
+                            props.setNewName('')
+                            props.setNewNumber('') 
+                        })
+                        .catch(error => {
+                            props.setErrorMessage('Information of '+PersonObject.name+' has already been removed from server')
+                            setTimeout(() => {props.setErrorMessage(null)}, 4000)
+                            })
                     unique = false
                     }
             }

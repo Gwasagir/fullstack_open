@@ -38,7 +38,8 @@ const App = () => {
       <h3>add a new</h3>
         <AddPerson persons={persons} setPersons={setPersons} newName={newName} 
         newNumber={newNumber} handleName={handleAddName} handleNum={handleAddNum}
-        setNewName={setNewName} setNewNumber={setNewNumber} setAddMessage={setAddMessage}/>
+        setNewName={setNewName} setNewNumber={setNewNumber} setAddMessage={setAddMessage}
+        setErrorMessage={setErrorMessage} />
       <h3>Numbers</h3>
         <GetNumbers persons={persons} filter={filterValue} 
         deletedId={deletedId} setDeletedId={setDeletedId} handleDelete={handleDelete} />

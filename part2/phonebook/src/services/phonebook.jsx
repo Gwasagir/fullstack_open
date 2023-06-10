@@ -20,9 +20,11 @@ const updateNum = (setPersons, persons, id, newNum) => {
     const personURL = baseUrl+'/'+id
     const personObject = persons.find(person => person.id === id) 
     const updatedNumber = {...personObject, number: newNum} // object with same name + id but new number
-    axios.put(personURL, updatedNumber).then(response => {
-        setPersons(persons.map(person => person.id !== id ? person : response.data))
-    })
+    const putUpdate = axios.put(personURL, updatedNumber)
+    return putUpdate.then(response => {
+            setPersons(persons.map(person => person.id !== id ? person : response.data))
+            console.log(response)        
+        })
     }
 
 const updatePersons = setPersons => {  
