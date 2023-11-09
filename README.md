@@ -1,17 +1,18 @@
-# Ohjelmistotuotanto
-## Niko Keurulainen submissions 
+Fullstack Open
+Niko Keurulainen submissions
 
-### Repository tree
-<pre>
-viikko 1
-  riippuvuuksien-injektointi-1
-  nhl-statistics-1
-viikko 2
-  poetry-web
-  project-reader
-  nhl-reader
-viikko 3
-  login-robot
-  web-login-robot
-viikko 4
-</pre>
+The React exercises are done using Vitejs
+Repository tree
+
+part0
+    0_4_new_note_diagram.md
+    0_5_single_page_app_diagram.md
+    0_6_new_note_single_page_app_diagram.md
+part1
+  courseinfo
+  unicafe
+  anecdotes
+part2
+  courseinfo (2.1-2.5)
+  phonebook
+  countries
